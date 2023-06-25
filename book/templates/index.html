@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	
+		
+		<!-- Product Style -->
+		<section class="product-area shop-sidebar shop section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-4 col-12">
+						<div class="shop-sidebar">
+								<!-- Single Widget -->
+								<div class="single-widget category">
+									<a href="{% url 'book_list' %}">All</a>
+								</div>
+								<div class="single-widget category">
+									<h3 class="title">Categories</h3>
+									<ul class="categor-list">
+										{% for category in categories %}
+										<li>
+											<a href="{% url 'book_list' %}?category={{ category.id }}">{{ category.name }}</a>
+										</li>
+										{% endfor %}										
+									</ul>
+								</div>
+								<!--/ End Single Widget -->
+								
+								<!-- Single Widget -->
+								<div class="single-widget category">
+									<h3 class="title">Authors</h3>
+									<ul class="categor-list">
+										{% for writer in writers %}
+										<li>
+											<a href="{% url 'book_list' %}?writer={{ writer.id }}">{{ writer.name }}</a>
+										</li>
+										{% endfor %}	
+									</ul>
+								</div>
+								<!--/ End Single Widget -->
+						</div>
+					</div>
+					<div class="col-lg-9 col-md-8 col-12">
+						<div class="row">
+							<div class="col-12">
+								<!-- Shop Top -->
+								<div class="shop-top">
+									<div class="shop-shorter float-right">
+										
+										<div class="single-shorter">
+											<label>Sort By :</label>
+											<select>
+												<option selected="selected">Name</option>
+												<option>Price</option>
+												<option>Size</option>
+											</select>
+										</div>
+									</div>
+									
+								</div>
+								<!--/ End Shop Top -->
+							</div>
+						</div>
+						<div class="row">
+							{% for book in books %}
+							<div class="col-lg-4 col-md-6 col-12">
+								<div class="single-product border">
+									<div class="product-img">
+										<a href="product-details.html">
+											<img class="default-img" src="{{ book.coverpage.url }}" alt="#">
+											<img class="hover-img" src="{{ book.coverpage.url }}" alt="#">
+										</a>
+										<div class="button-head">
+											
+											<div class="product-action-2">
+												<a title="Add to cart" href="#">Add to cart</a>
+											</div>
+										</div>
+									</div>
+									<div class="product-content">
+										<h3><a href="product-details.html">{{ book.name }}</a></h3>
+										<h6 style="color: #f7941d; font-size:14px;">Category: <a href="product-details.html">{{ book.category.name }}</a></h6>
+										<h6 style="color: #f7941d; font-size:14px;">Author: <a href="product-details.html">{{ book.writer.name }}</a></h6>
+										<div class="product-price">
+											<span>Tk. {{ book.price }}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% empty %}
+            				<h2>No books found.</h2>
+        					{% endfor %}
+
+							
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--/ End Product Style 1  -->	
+
+{% endblock %}	
+		
+		
+		
+	
+		
+		

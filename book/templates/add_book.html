@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <h1 class="text-center">Add Book</h1>
+    <div class="row justify-content-center">
+      
+      <div class="col-sm-8">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="mb-1">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" class="form-control">
+          </div>
+          <div class="mb-1">
+            <label for="price">Price:</label>
+            <input type="text" name="price" id="price" class="form-control">
+          </div>
+          <div class="mb-1">
+            <label for="stock">Stock:</label>
+            <input type="text" name="stock" id="stock" class="form-control">
+          </div>
+          <div class="mb-1">
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" class="form-control" rows="6"></textarea>            
+          </div>
+          <div class="mb-1" style="display: inline-block; padding: 0;">            
+            <select name="writer" id="writer" class="form-select">
+                <option value="">Select Writer</option>
+            {% for writer in writers %}
+                <option value="{{ writer.id }}">{{ writer.name }}</option>
+            {% endfor %}
+            </select>           
+          </div>
+          <div class="mb-1" style="display: inline-block; padding: 0;">            
+            <select name="category" id="category" class="form-select">
+                <option value="">Select Category</option>
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+            </select>           
+          </div>
+          <div class="mb-1">
+            <label for="coverpage">Cover Page:</label>
+            <input type="file" name="coverpage" id="coverpage" class="form-control">          
+          </div>
+          
+          <button type="submit" class="btn btn-primary mt-3">Save</button>
+        </form>
+      </div>
+    </div>
+</div>
+
+{% endblock %}	
