@@ -1,6 +1,19 @@
 from django.shortcuts import render, redirect
 from .models import *
+from rest_framework import viewsets
+from api.serializers import CategorySerializer, WriterSerializer, BookSerializer
 
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+class WriterViewSet(viewsets.ModelViewSet):
+    queryset = Writer.objects.all()
+    serializer_class = WriterSerializer
+
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
 # Create your views here.
 def book_list(request):
     categories = Category.objects.all()
